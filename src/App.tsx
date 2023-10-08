@@ -4,7 +4,7 @@ import { useForm } from 'react-hook-form'
 function App() {
 
   const { register, handleSubmit, formState: { errors} } = useForm({
-    // mode: 'onChange',
+    mode: 'onChange',
     reValidateMode: 'onSubmit',
     criteriaMode: 'all',
   })
@@ -28,6 +28,7 @@ function App() {
       </form>
     </div>
   );
+
 }
 
 export default App;
