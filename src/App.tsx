@@ -1,36 +1,30 @@
-import { ChangeEvent, FormEvent, useState } from 'react';
 import './App.css';
+import { useForm } from 'react-hook-form'
 
 function App() {
-  const [email ,setEmail] = useState('')
-  const [password ,setPassword] = useState('')
 
-  const handleChangeEmail = (e: ChangeEvent<HTMLInputElement>) => {
-    setEmail(e.target.value)
-  }
-  const handleChangePassword = (e: ChangeEvent<HTMLInputElement>) => {
-    setPassword(e.target.value)
-  }
+  const { register, handleSubmit, formState: { errors} } = useForm({
+    mode: 'onChange',
+    reValidateMode: 'onSubmit',
+    criteriaMode: 'all',
+  })
 
-  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
-    e.preventDefault()
-    console.log({email, password})
-  }
+  const onSubmit = (data: any) => console.log(data)
   return (
     <div className="App">
-      <h1>ログイン</h1>
-      <form onSubmit={handleSubmit}>
-        <div>
-          <label htmlFor="email">メールアドレス</label>
-          <input type="email" name="email" id="email" value={email} onChange={handleChangeEmail}/>
-        </div>
-        <div>
-          <label htmlFor="password">パスワード</label>
-          <input type="password" name="password" id="password" value={password} onChange={handleChangePassword}/>
-        </div>
-        <div>
-          <button type="submit">ログイン</button>
-        </div>
+      <h1>ログインフォーム</h1>
+      <form onSubmit={handleSubmit(onSubmit)}>
+      <div>
+        <label htmlFor="email">メールアドレス</label>
+        <input id="email" {...register('email', {required: {value: true, message: '入力が必須'}, minLength: {value: 8, message: '8文字以上入力してね'}})} />
+        {errors.email?.message && <div>aa</div>}
+      </div>
+      <div>
+        <label htmlFor="">パスワード</label>
+        <input type="password" id="email" {...register('password', {required: {value: true, message: 'ここも入力しろよ'}})}/>
+        {errors.password?.message && <div>bbb</div>}
+      </div>
+      <button type="submit">ログイン</button>
       </form>
     </div>
   );
