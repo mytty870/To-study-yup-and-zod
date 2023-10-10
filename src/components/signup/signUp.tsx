@@ -2,6 +2,7 @@ import React from "react"
 import { useForm } from "react-hook-form"
 import { yupResolver } from "@hookform/resolvers/yup"
 import * as yup from "yup"
+import { TextField } from "@material-ui/core"
 
 export const SignUp = () => {
 
@@ -40,7 +41,7 @@ export const SignUp = () => {
     resolver: yupResolver(schema),
   })
 
-  console.log(errors)
+  // console.log(errors)
 
   const onSubmit = (data: any) => console.log(data)
 
@@ -49,7 +50,7 @@ export const SignUp = () => {
       <div>
         <h1>Sign Up</h1>
         <form onSubmit={handleSubmit(onSubmit)}>
-          <div>
+          {/* <div>
             <div>
               <label >
                 氏名
@@ -72,7 +73,8 @@ export const SignUp = () => {
               {errors.email && <div>{errors.email.message}</div>}
             </div>
           </div>
-            <button type="submit">送信</button>
+            <button type="submit">送信</button> */}
+          <TextField type="text" label="氏名" required  defaultValue="Hello World"  />
         </form>
       </div>
     </>
