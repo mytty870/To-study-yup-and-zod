@@ -3,6 +3,7 @@ import { useForm } from "react-hook-form"
 import { yupResolver } from "@hookform/resolvers/yup"
 import * as yup from "yup"
 import { TextField } from "@material-ui/core"
+import '../../App.css'
 
 export const SignUp = () => {
 
@@ -50,9 +51,9 @@ export const SignUp = () => {
       <div>
         <h1>Sign Up</h1>
         <form onSubmit={handleSubmit(onSubmit)}>
-          {/* <div>
-            <div>
-              <label >
+          <div>
+            {/* <div> */}
+              {/* <label >
                 氏名
                 <input type="text" id="firstName" {...register('firstName')} />
               </label>
@@ -64,17 +65,16 @@ export const SignUp = () => {
                 <input type="text" id="lastName" {...register('lastName')} />
               </label>
               {errors.lastName && <div>{errors.lastName.message}</div>}
-            </div>
+            </div> */}
             <div>
-              <label >
-                メール
+              <label className="mail-label">
+                <span>メールアドレス</span>
                 <input type="text" id="email" {...register('email')} />
               </label>
               {errors.email && <div>{errors.email.message}</div>}
             </div>
           </div>
-            <button type="submit">送信</button> */}
-          <TextField type="text" label="氏名" required  defaultValue="Hello World"  />
+            <button type="submit">送信</button>
         </form>
       </div>
     </>
